@@ -1,0 +1,43 @@
+Ordered Substrings
+You are given an array A consisting of strings. You are supposed to order the given strings in such a way that for a particular string, all strings ordered before it exist as its substrings. Each string is made up of lowercase English letters. Return an array consisting of the correct order of strings. If it is not possible to do so, return a vector consisting of one element, which is the string "NO". Input:
+A: Array of strings.
+Output:
+Return an array consisting of the correct order of strings. If it is not possible to do so, return a vector consisting of one element, which is the string "NO".
+Constraints:
+Strings in A consist of lowercase English letters
+1 <= size(A) <= 100
+1 <= size of strings in A <= 100
+Some strings might be equal
+Example:
+Input:
+A: [abc, abcd, a, abc]
+
+Output:
+[a, abc, abc, abcd]
+
+Input:
+A: [xyz, xz, xyzzy]
+
+Output:
+[NO]
+
+solution:
+bool comp(string a,string b){
+    if(a.length()<b.length())return true;
+    else if(a.length()>b.length())return false;
+    
+    return a<b;
+}
+vector<string> Solution::solve(vector<string> &A) {
+     sort(A.begin(),A.end(),comp);
+    for(long long i=1;i<A.size();i++){
+        //cout<<A[i]<<" ";
+        size_t found = A[i].find(A[i-1]); 
+        if(found == string::npos){
+            vector<string> k;
+            k.push_back("NO");
+            return k;
+        }   
+    }
+    return A;
+}
