@@ -1,0 +1,25 @@
+Minimum Number of Squares
+
+Given an integer N. Return count of minimum numbers, sum of whose squares is equal to N. Example: N=6 Possible combinations are :
+(12 + 12 + 12 + 12 + 12 + 12)
+(12 + 12 + 22)
+So, minimum count of numbers is 3 (i.e. 1,1,2). Note: 1 ≤ N ≤ 105
+
+solution:
+
+int Solution::countMinSquares(int A) {
+    if(A<=3)return A;
+    vector<int> k(A+1);
+    k[0]=0;
+    k[1]=1;k[2]=2;k[3]=3;
+    for(int i=4;i<=A;i++){
+        if((int)sqrt(A)*(int)sqrt(A)==A)k[i]=1;
+        else{
+            k[i]=i;
+            for(int j=1;j<=sqrt(i);j++){
+                k[i]=min(k[i],k[i-(j*j)]+1);
+            }
+        }
+    }
+    return k[A];
+}
