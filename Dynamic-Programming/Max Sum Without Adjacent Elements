@@ -10,9 +10,9 @@ Note that you can choose more than 2 numbers
 solution:
 
 int Solution::adjacent(vector<vector<int> > &A) {
-    for(int i=0;i<A[0].size();i++)
+    for(int i=0;i<A[0].size();i++){
         A[0][i]=max(A[0][i],A[1][i]);
-        
+    }
     long long inc=A[0][0];
     long long exc=0;
     if(A[0].size()==1)return inc;
